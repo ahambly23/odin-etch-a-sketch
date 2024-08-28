@@ -5,7 +5,7 @@ const container = document.querySelector("#container");
 const rainbow = document.querySelector("#rainbow");
 const red = document.querySelector("#red");
 const blue = document.querySelector("#blue");
-const yellow = document.querySelector("#yellow");
+const pink = document.querySelector("#pink");
 const green = document.querySelector("#green");
 const black = document.querySelector("#black");
 const eraser = document.querySelector("#eraser");
@@ -24,8 +24,8 @@ function getColor() {
         return 'green';
     } else if (currentMode === 'blue') {
         return 'blue';
-    } else if (currentMode === 'yellow') {
-        return 'yellow';
+    } else if (currentMode === 'pink') {
+        return 'pink';
     } else if (currentMode === 'eraser') {
         return 'whitesmoke';
     } else {
@@ -68,8 +68,8 @@ rainbow.addEventListener("click", () => {
 red.addEventListener("click", () => {
     currentMode = 'red';
 })
-yellow.addEventListener("click", () => {
-    currentMode = 'yellow';
+pink.addEventListener("click", () => {
+    currentMode = 'pink';
 })
 green.addEventListener("click", () => {
     currentMode = 'green';
