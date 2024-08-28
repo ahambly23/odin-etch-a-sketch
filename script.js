@@ -1,37 +1,91 @@
 const input = document.querySelector("input");
 const create = document.querySelector("#create");
+const container = document.querySelector("#container");
 
-create.addEventListener("click", () => {
-    const inputValue = input.value;
+const rainbow = document.querySelector("#rainbow");
+const red = document.querySelector("#red");
+const blue = document.querySelector("#blue");
+const yellow = document.querySelector("#yellow");
+const green = document.querySelector("#green");
+const black = document.querySelector("#black");
+const eraser = document.querySelector("#eraser");
 
-    const gridSize = 960;
-    let numOfSquares = inputValue;
+let currentMode = "black";
 
-    const container = document.querySelector("#container");
+function getColor() {
+    if (currentMode === 'rainbow') {
+        let randomRed = Math.floor(Math.random() * 255);
+        let randomGreen = Math.floor(Math.random() * 255);
+        let randomBlue = Math.floor(Math.random() * 255);
+        return `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
+    } else if (currentMode === 'red') {
+        return 'red';
+    } else if (currentMode === 'green') {
+        return 'green';
+    } else if (currentMode === 'blue') {
+        return 'blue';
+    } else if (currentMode === 'yellow') {
+        return 'yellow';
+    } else if (currentMode === 'eraser') {
+        return 'whitesmoke';
+    } else {
+        return 'black';
+    }
+}
+
+function applyColor() {
+    this.style.backgroundColor = getColor();
+}
+
+function createGrid(numOfSquares) {
+    const gridSize = 500;
 
     container.innerHTML = '';
 
     container.style.width = `${gridSize}px`;
     container.style.width = `${gridSize}px`;
 
-    function setBackgroundColor() {
-        this.style.backgroundColor = "black";
+    const total = (numOfSquares * numOfSquares)
+    const cellHeightAndWidth = `${(gridSize / numOfSquares) - 2}px`
+
+    for (let x = 0; x < total; x++) {
+        const cell = document.createElement("div");
+
+        cell.style.width = cellHeightAndWidth;
+        cell.style.height = cellHeightAndWidth;
+        cell.classList.add("cell");
+
+        cell.addEventListener("mouseover", applyColor);
+        container.appendChild(cell);
     }
+}
 
-    function createGrid() {
-        const total = (numOfSquares * numOfSquares)
-        const cellHeightAndWidth = `${(gridSize / numOfSquares) - 2}`
+createGrid(16);
 
-        for (let x = 0; x < total; x++) {
-            const cell = document.createElement("div");
+rainbow.addEventListener("click", () => {
+    currentMode = 'rainbow';
+});
+red.addEventListener("click", () => {
+    currentMode = 'red';
+})
+yellow.addEventListener("click", () => {
+    currentMode = 'yellow';
+})
+green.addEventListener("click", () => {
+    currentMode = 'green';
+})
+blue.addEventListener("click", () => {
+    currentMode = 'blue';
+})
+black.addEventListener("click", () => {
+    currentMode = 'black';
+});
+eraser.addEventListener("click", () => {
+    currentMode = 'eraser';
+});
 
-            cell.style.width = `${cellHeightAndWidth}px`;
-            cell.style.height = `${cellHeightAndWidth}px`;
-            cell.classList.add("cell");
-
-            container.appendChild(cell);
-            cell.addEventListener("mouseover", setBackgroundColor);
-        }
-    }
-    createGrid();
+create.addEventListener("click", () => {
+    const inputValue = input.value;
+    createGrid(inputValue);
+    currentMode = 'black';
 })

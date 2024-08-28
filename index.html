@@ -5,14 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odin Etch-a-Sketch</title>
     <link href="styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <input id="input" type="number" min="1" max="100">
+    <h1>Etch-a-Sketch</h1>
+
+    <div class="options">
+        <input id="input" type="number" min="1" max="100" placeholder="click to change dimensions!">
         <button id="create">Create</button>
     </div>    
-    <div id="container">
+
+    <div class="mid-cont">
+        <div class="palette-left">
+            <button id="rainbow"></button>
+            <button id="red"></button>
+            <button id="blue"></button>
+        </div>
+
+        <div id="container"></div>
+
+        <div class="palette-right">
+            <button id="yellow"></button>
+            <button id="green"></button>
+            <button id="black"></button>
+        </div>
     </div>
+
+    <div class="eraser">
+        <button id="eraser"></button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
